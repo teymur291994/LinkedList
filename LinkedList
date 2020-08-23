@@ -1,0 +1,25 @@
+class Item {
+    var previous: Item?
+    var value: Any
+
+    init(_ value: Any) {
+        self.value = value
+    }
+}
+
+struct LinkedList {
+
+    private var startItem: Item?
+    private(set) var lastItem: Item?
+
+    mutating func add(_ value: Any) {
+        let addedItem = Item(value)
+        let previousLastItem = lastItem
+        if startItem == nil {
+            startItem = addedItem
+        }
+
+        lastItem = addedItem
+        lastItem?.previous = previousLastItem
+    }
+}
